@@ -79,16 +79,20 @@ pipeline {
                     nexusVersion: 'nexus3',
                     protocol: 'http',
                     nexusUrl: '${NEXUSIP}:${NEXUSPORT}',
-                    groupId: '${NEXUS_REPOGRP_ID}',
+                    groupId: 'QA',
                     version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                     repository: "${RELEASE_REPO}",
                     credentialsId: "${NEXUS_LOGIN}",
                     artifacts: [
-                      [artifactId: vprofile,
-                      classifier: '',
-                      file: 'target/vprofile-v2.war',
-                      type: 'var']
-                    ]
+                                [artifactId: pom.artifactId,
+                                classifier: '',
+                                file: artifactPath,
+                                type: pom.packaging],
+                                [artifactId: pom.artifactId,
+                                classifier: '',
+                                file: "pom.xml",
+                                type: "pom"]
+                            ]
                 )
             }
         }
