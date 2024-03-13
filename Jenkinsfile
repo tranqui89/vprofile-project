@@ -89,6 +89,7 @@ pipeline {
                       file: 'target/vprofile-v2.war',
                       type: 'var']
                     ]
+                )
             }
         }
     }
